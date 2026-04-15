@@ -1,277 +1,106 @@
-# 🧠 Brain Code–Style Puzzle Game (Flutter)
+# 🧠 Think.sys — Puzzle Game (Flutter)
 
-## High-Level Design Document (MVP - Offline Only)
+A minimalist, logic-based puzzle game inspired by unconventional problem-solving.  
+Built to challenge creativity, pattern recognition, and lateral thinking.
 
----
-
-## 🎯 Objective
-
-Build a minimalist, logic-based puzzle game inspired by Brain Code, where users solve unconventional problems using creativity, pattern recognition, and lateral thinking.
-
-This version is strictly **offline-first**, with no backend, ads, or analytics.
+> ⚡ Designed for both technical and non-technical players.
 
 ---
 
-## 🧩 Core Concept
+## 🎯 Concept
 
-* Users progress through a sequence of puzzles (levels)
-* Each puzzle requires a unique way of thinking
-* Inputs may be:
+Think.sys is not about difficulty — it's about perspective.
 
-    * Text-based (command style)
-    * Tap interactions
-    * Device-based (optional future scope)
+Each level presents a puzzle that may require:
+- Rethinking the question
+- Breaking assumptions
+- Interacting in unexpected ways
 
-The focus is on delivering **"aha moments"** rather than complexity.
-
----
-
-## 🏗️ System Architecture
-
-### 1. Presentation Layer (UI)
-
-Handles all user interaction and rendering.
-
-**Responsibilities:**
-
-* Display puzzle content
-* Capture user input
-* Show feedback (correct/incorrect)
-* Navigate between levels
+The goal is to create **"aha!" moments**, not frustration.
 
 ---
 
-### 2. Application Layer (State Management)
+## 🧩 Gameplay
 
-Manages app state using GetX.
+- Progress through a sequence of puzzles
+- Each puzzle has a unique solution logic
+- No tutorials — discovery is part of the game
 
-**Responsibilities:**
+### 🔹 Input Types
 
-* Current level tracking
-* Puzzle state handling
-* Input processing
-* Navigation logic
-
----
-
-### 3. Domain Layer (Puzzle Engine)
-
-Core logic of the game.
-
-**Responsibilities:**
-
-* Puzzle definitions
-* Validation rules
-* Hint system
-* Level progression rules
+- Text input (primary)
+- Tap interactions
+- More interaction types planned
 
 ---
 
-### 4. Data Layer (Local Storage)
+## ✨ Features (MVP)
 
-Handles persistence using Hive.
-
-**Responsibilities:**
-
-* Save user progress
-* Store unlocked levels
-* Track hint usage
+- 🧠 Sequential puzzle system
+- 💾 Offline-first (no internet required)
+- ⚡ Instant answer validation
+- 💡 Optional hint system
+- 🌙 Minimal dark-themed UI
+- 🔁 Auto-save progress
 
 ---
 
-## 📁 Project Structure
+## 🏗️ Tech Stack
+
+- **Framework:** Flutter
+- **State Management:** GetX
+- **Local Storage:** Hive
+
+---
+
+## 📂 Project Structure
 
 ```
 lib/
- ├── core/
- │    ├── engine/        # Puzzle engine logic
- │    ├── utils/
- │
- ├── data/
- │    ├── models/
- │    ├── local/         # Hive storage
- │
- ├── modules/
- │    ├── home/
- │    ├── puzzle/
- │    ├── result/
- │
- ├── controllers/        # GetX controllers
- ├── widgets/            # Reusable UI components
+ ├── core/           # Game engine & shared logic
+ ├── data/           # Models & local storage
+ ├── modules/        # Screens (home, puzzle, result)
+ ├── controllers/    # State management
+ ├── widgets/        # Reusable UI components
 ```
 
 ---
 
-## 🧠 Puzzle Engine Design
+## 🎨 Design Philosophy
 
-### Puzzle Model
-
-Each puzzle is defined as:
-
-* ID
-* Question/Prompt
-* Expected solution logic
-* Hint(s)
-
-Example structure:
-
-```
-class Puzzle {
-  final int id;
-  final String question;
-  final Function validator;
-  final List<String> hints;
-}
-```
+- Minimal UI, maximum focus
+- No distractions
+- Fast interactions
+- Subtle, mysterious tone
 
 ---
 
-### Validation Strategy
+## 🔁 Basic Flow
 
-Each puzzle has a custom validator function.
-
-Examples:
-
-* Exact match
-* Case-insensitive match
-* Pattern-based validation
-* Multi-step validation
+1. Open the app  
+2. Start or continue the game  
+3. Solve the current puzzle  
+4. Progress to the next level  
 
 ---
 
-### Input System
+## 🚀 Future Plans
 
-Supports:
-
-* Text input (primary)
-* Button/tap input (secondary)
-
-Future extensibility:
-
-* Gestures
-* Device sensors
+- New puzzle types (gestures, sensors, device interactions)
+- Dynamic content updates
+- Community-driven puzzles
+- Leaderboards & progression systems
 
 ---
 
-## 💾 Local Storage (Hive)
+## ⚠️ Note
 
-### Stored Data:
-
-* Current level
-* Completed levels
-* Hint usage per level
-
-### Benefits:
-
-* Offline support
-* Fast read/write
-* Lightweight
+This project prioritizes **puzzle design over complexity**.  
+If a puzzle feels confusing, it might be intentional — or it might need improvement.
 
 ---
 
-## 🎮 Core Features (MVP)
+## 🧠 Philosophy
 
-### 1. Level System
-
-* Sequential level unlocking
-* Auto-save progress
-
-### 2. Puzzle Interaction
-
-* Display puzzle prompt
-* Accept user input
-* Validate answer
-
-### 3. Feedback System
-
-* Correct answer → next level
-* Incorrect → retry message
-
-### 4. Hint System
-
-* Optional hints per level
-* Limited usage (basic)
-
-### 5. Minimal UI
-
-* Dark theme
-* Clean typography
-* Focus on content
-
----
-
-## 🎨 UI/UX Guidelines
-
-* Minimal distractions
-* High contrast (dark mode)
-* Smooth transitions
-* Instant feedback
-
-Tone:
-
-* Slightly mysterious
-* Encourages curiosity
-
----
-
-## 🔁 User Flow
-
-1. Launch app
-2. Land on Home Screen
-3. Start/Continue game
-4. Open current puzzle
-5. Enter solution
-6. System validates input
-7. If correct → next level
-8. If incorrect → retry
-
----
-
-## 🧪 Testing Strategy
-
-* Unit tests for puzzle validation
-* Manual testing for puzzle clarity
-* Edge case testing for inputs
-
----
-
-## 🚀 Future Scope (Post-MVP)
-
-* Backend integration (Firebase)
-* Cloud puzzle updates
-* Leaderboards
-* Analytics
-* AdMob monetization
-
----
-
-## ⚠️ Key Risks
-
-### 1. Puzzle Quality
-
-Poor puzzles will break engagement.
-
-### 2. Difficulty Balance
-
-Too hard → users quit
-Too easy → boring
-
-### 3. UX Friction
-
-Confusing UI may be mistaken for puzzle difficulty
-
----
-
-## 🧠 Success Criteria
-
-* Users feel challenged but not frustrated
-* High level completion rate
-* Strong retention (even without backend tracking initially)
-
----
-
-## 🏁 Conclusion
-
-This project focuses on delivering a unique puzzle-solving experience using a lightweight, scalable Flutter architecture.
-
-The MVP is intentionally simple, allowing rapid iteration and refinement of the most critical component: **puzzle design**.
+> "The answer is always simple.  
+> The thinking is not."
